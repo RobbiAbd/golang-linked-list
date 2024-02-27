@@ -13,14 +13,32 @@ type List struct {
 
 func main() {
 	list := &List{}
-	list.insertFirst(5)
-	list.insertFirst(10)
-	list.insertLast(15)
-	list.insertLast(20)
+	// list.insertFirst(5)
+	// list.insertFirst(10)
+	// list.insertLast(15)
+	// list.insertLast(20)
+	list.InsertSeq(20)
+	list.InsertSeq(5)
+	list.InsertSeq(2)
+	list.InsertSeq(15)
 
 	printList(list)
-	list.remove(15)
-	printList(list)
+}
+
+func (l *List) InsertSeq(value int) {
+	newNode := &Node{data: value}
+
+	if l.head == nil {
+		l.head = newNode
+		return
+	}
+
+	curr := l.head
+	for curr.next != nil {
+		curr = curr.next
+	}
+
+	curr.next = newNode
 }
 
 func (l *List) insertFirst(value int) {
